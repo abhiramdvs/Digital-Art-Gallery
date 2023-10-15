@@ -1,0 +1,46 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Digital Art Gallery</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon_io/site.webmanifest" />
+    <link rel="stylesheet" href="checkout.css" />
+  </head>
+  <body>
+    <h1>Checkout</h1>
+    <h2>Your Orders</h2>
+    <div class="items">
+      <ul>
+        {{#each cart}}
+          <li>{{name}} - ${{price}}</li>
+        {{/each}}
+        <li>Total: ${{totalPrice}}</li>
+        <form action="/create-order" method="POST">
+          <input type="hidden" name="amount" value="{{totalPrice}}" />
+          <input type="hidden" name="currency" value="USD" />
+          <input type="hidden" name="receipt" value="order_receipt" />
+          <input type="hidden" name="notes" value="Order notes" />
+          <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+        </form>
+      </ul>
+    </div>
+  </body>
+</html>

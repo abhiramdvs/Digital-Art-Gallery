@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders | Digital Art Gallery</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon_io/site.webmanifest" />
+  <link rel="stylesheet" href="orders.css" />
+</head>
+
+<body>
+  <div id="userEmail">Hi, {{username}}!</div>
+  <div class="lout"><a href="loginpage">Logout</a></div>
+  <button class="burger" onclick="toggleMenu()">
+    <div class="background"></div>
+    <div class="menu">
+      <nav>
+        <a id="homeLink" href="homepage" style="animation-delay: 0.3s;">Home</a>
+        <a href="arts" style="animation-delay: 0.4s;">Arts</a>
+        <a href="cart" style="animation-delay: 0.5s;">Cart</a>
+        <a href="orders" style="animation-delay: 0.6s;">Orders</a>
+        <a id="aboutLink" href="about" style="animation-delay: 0.7s;">About</a>
+      </nav>
+    </div>
+    <script>
+      const toggleMenu = () =>
+        document.body.classList.toggle("open");
+    </script>
+  </button>
+  <h1>Your Orders</h1>
+  <div class="orderstext">
+    <p>Art 2 - On the Way!</p>
+    <p>Art 5 - On the Way!</p>
+  </div>
+  <footer class="foot">
+    <p>&copy; 2023 Digital Art Gallery. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>

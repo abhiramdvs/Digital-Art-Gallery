@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+
+button {
+    margin-left: 46%;
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: white;
+    background-color: #06b6d4;
+    border-color: #06b6d4;
+    font-weight: 700;
+}
+
+button:hover {
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border-color: #06b6d4;
+    font-weight: 700;
+    transform: scale(1.1);
+}
