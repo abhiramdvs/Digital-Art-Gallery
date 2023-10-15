@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const hbs = require("hbs");
-const collection = require("./mongodb");
+// const collection = require("./mongodb");
 const port = process.env.PORT || 3000;
 const session = require("express-session");
 const Razorpay = require("razorpay");
@@ -40,8 +40,8 @@ app.get("/loginpage", (req, res) => {
 
 app.get("/orders", async (req, res) => {
   try {
-    const userEmail = req.session.userEmail;
-    const user = await collection.findOne({ email: userEmail });
+    // const userEmail = req.session.userEmail;
+    const user = "admin";
     res.render("orders", { username: user ? user.username : "Guest" });
   } catch (error) {
     res.render("orders", { username: "Guest" });
@@ -50,8 +50,8 @@ app.get("/orders", async (req, res) => {
 
 app.get("/about", async (req, res) => {
   try {
-    const userEmail = req.session.userEmail;
-    const user = await collection.findOne({ email: userEmail });
+    // const userEmail = req.session.userEmail;
+    const user = "admin";
     res.render("about", { username: user ? user.username : "Guest" });
   } catch (error) {
     res.render("about", { username: "Guest" });
@@ -60,9 +60,10 @@ app.get("/about", async (req, res) => {
 
 app.get("/arts", async (req, res) => {
   try {
-    const userEmail = req.session.userEmail;
-    const user = await collection.findOne({ email: userEmail });
-    res.render("arts", { username: user ? user.username : "Guest", items });
+    // const userEmail = req.session.userEmail;
+    // const user = await collection.findOne({ email: userEmail });
+    const user = "admin";
+    res.render("arts", { username: "admin" ? user.username : "Guest", items });
   } catch (error) {
     res.render("arts", { username: "Guest" });
   }
@@ -70,8 +71,8 @@ app.get("/arts", async (req, res) => {
 
 app.get("/cart", async (req, res) => {
   try {
-    const userEmail = req.session.userEmail;
-    const user = await collection.findOne({ email: userEmail });
+    // const userEmail = req.session.userEmail;
+    const user = "admin";
     const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
     res.render("cart", {
       username: user ? user.username : "Guest",
@@ -111,8 +112,8 @@ app.get("/add-to-cart/:id", (req, res) => {
 
 app.get("/homepage", async (req, res) => {
   try {
-    const userEmail = req.session.userEmail;
-    const user = await collection.findOne({ email: userEmail });
+    // const userEmail = req.session.userEmail;
+    const user = "admin";
     res.render("homepage", { username: user ? user.username : "Guest" });
   } catch (error) {
     res.render("homepage", { username: "Guest" });
@@ -143,12 +144,12 @@ app.post("/signuppage", async (req, res) => {
     if (req.body.pwd !== req.body.cpwd) {
       return res.send("Passwords do not match!");
     }
-    const checking = await collection.findOne({ email: req.body.email });
-    if (checking) {
-      return res.send("User details already exist");
-    }
-    await collection.insertMany([data]);
-    // res.send("Sign Up Succesful");
+    // const checking = await collection.findOne({ email: req.body.email });
+    // if (checking) {
+    //   return res.send("User details already exist");
+    // }
+    // await collection.insertMany([data]);
+    res.send("Sign Up Succesful");
     res.status(201).render("loginpage", {
       naming: req.body.uname,
     });
@@ -159,11 +160,12 @@ app.post("/signuppage", async (req, res) => {
 });
 
 app.post("/loginpage", async (req, res) => {
-  const user = { email: req.body.email };
-  req.session.userEmail = user.email;
+  // const userEmail = req.session.userEmail;
+  const user = "admin";
+  // req.session.userEmail = user.email;
   try {
-    const check = await collection.findOne({ email: req.body.email });
-    if (check.password === req.body.pwd) {
+    // const check = await collection.findOne({ email: req.body.email });
+    if ("admin" === req.body.pwd) {
       // res.status(201).render("homepage", { naming: `${req.body.pwd}+${req.body.email}` })
       res.redirect("homepage");
     } else {
