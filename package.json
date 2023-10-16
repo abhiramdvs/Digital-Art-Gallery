@@ -20,7 +20,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "node src/index.js",
-    "build": "babel src --out-dir dist",
+    "build": "npm install && babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "abhiram",
